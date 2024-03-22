@@ -1,0 +1,8 @@
+replicacount: 2
+image:
+  repository: "hello-world"
+  tag: "1.0"
+  pullPolicy: IfNotPresent
+service:
+  type: NodePort
+  port: 80
