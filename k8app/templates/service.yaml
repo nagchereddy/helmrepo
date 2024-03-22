@@ -5,8 +5,8 @@ metadata:
 spec: 
   selector: 
     app: frontend 
-  type: NodePort 
+  type: {{ .Values.servcie.type }}
   ports: 
     - name: http 
-      port: 80 
+      port: {{ .Values.service.port }} 
       targetPort: 8080

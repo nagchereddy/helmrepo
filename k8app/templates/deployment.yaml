@@ -1,18 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: newapp
+    app.kubernetes.io/name: {{ include "k8app.name" . }}
+    helm.sh/chart: {{ include "k8app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
+  replicas: {{ .Values.replicacount }}
   selector:
     matchLabels:
-      app: newapp
+      app.kubernetes.io/name: {{ include "k8app.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: newapp
+        app.kubernetes.io/name: {{ include "k8app.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-      - name: myapp
+      - name: {{.Chart.Name }}
         image: httpd
         resources:
           limits:
