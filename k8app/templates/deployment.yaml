@@ -1,10 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    app.kubernetes.io/name: {{ include "k8app.name" . }}
-    helm.sh/chart: {{ include "k8app.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    name: {{ include "k8app.fullname" . }}
+    labels:
+        app.kubernetes.io/name: {{ include "k8app.name" . }}
+        helm.sh/chart: {{ include "k8app.chart" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicacount }}
   selector:

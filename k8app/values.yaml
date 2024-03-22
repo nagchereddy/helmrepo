@@ -1,6 +1,6 @@
 replicacount: 2
 image:
-  repository: "hello-world"
+  repository: "us-east1-docker.pkg.dev/solid-antler-409714/gcprepo/httpd"
   tag: "1.0"
   pullPolicy: IfNotPresent
 service:
