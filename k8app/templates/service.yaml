@@ -5,7 +5,7 @@ metadata:
 spec: 
   selector: 
     app: frontend 
-  type: {{ .Values.servcie.type }}
+  type: {{ .Values.service.type }}
   ports: 
     - name: http 
       port: {{ .Values.service.port }} 
