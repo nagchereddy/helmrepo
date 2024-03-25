@@ -29,18 +29,6 @@ pipeline{
             }
             }
         }
-        // stage("Building Docker image"){
-        //     steps{
-        //         script{
-        //             // docker.withRegistry("${GCR_URL}", "${ARTIFACT_CREDS}") {
-
-        //                 def customImage = docker.build("${GCR_URL}/${APP_NAME}:${env.BUILD_ID}")
-
-        //                 /* Push the container to the custom Registry */
-        //                 customImage.push()
-        //             // }
-        //         }
-        //     }
-        // }
+    
 }
 }
