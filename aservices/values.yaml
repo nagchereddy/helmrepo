@@ -1,4 +1,4 @@
-replicacount: 3
+replicacount: 1
 image:
   repository: "us-east1-docker.pkg.dev/solid-antler-409714/gcprepo/aservices"
   tag: "TAG_NAME"
@@ -6,3 +6,5 @@ image:
 service:
   type: LoadBalancer
   port: 80
+autoscaling:
+  enabled: false
