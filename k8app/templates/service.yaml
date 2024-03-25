@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-apache
 spec: 
   selector: 
-    app: {{ .Release.Name }}-apache
+    name: {{ .Release.Name }}-apache
   type: {{ .Values.service.type }}
   ports: 
     - name: http 
