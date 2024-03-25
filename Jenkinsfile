@@ -39,9 +39,9 @@ pipeline{
         stage("Creating helm charts"){
             steps{
                 script{
-            sh("sed -i 's/TAG_NAME/${env.BUILD_ID}/g' aservices/values.yaml")
+            sh("sed -i 's/TAG_NAME/${env.BUILD_ID}/g' '${APP_NAME}'/values.yaml")
             
-            sh("helm package k8app")
+            sh("helm package '${APP_NAME}'")
             sh("helm push '${CHART_NAME}' oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
             }
         }
