@@ -1,4 +1,4 @@
-replicacount: 2
+replicacount: 3
 image:
   repository: "us-east1-docker.pkg.dev/solid-antler-409714/gcprepo/httpd"
   tag: "TAG_NAME"
