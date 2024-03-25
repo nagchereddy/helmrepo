@@ -44,7 +44,7 @@ pipeline{
             steps{
                 script{
             sh('gcloud container clusters get-credentials friends --zone us-west4-b --project solid-antler-409714')
-            sh('helm install myapp us-east1-docker.pkg.dev/solid-antler-409714/helmrepo/k8app:0.1.0 ')
+            sh('helm install myapp oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo/k8app --version 0.1.0 ')
         }
             }
         }

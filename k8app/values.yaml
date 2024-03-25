@@ -4,5 +4,5 @@ image:
   tag: "TAG_NAME"
   pullPolicy: IfNotPresent
 service:
-  type: NodePort
+  type: LoadBalancer
   port: 80
