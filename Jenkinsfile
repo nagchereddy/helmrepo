@@ -33,6 +33,13 @@ pipeline{
             sh("helm push k8app-0.1.0.tgz oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
         }
 
+        Stage('Deploying the app into K8'){
+
+            sh('gcloud container clusters get-credentials friends --zone us-west4-b --project solid-antler-409714')
+            sh('helm install us-east1-docker.pkg.dev/solid-antler-409714/helmrepo/k8app:0.1.0')
+        }
+        
+
             }
             }
         }
