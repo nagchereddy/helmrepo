@@ -8,7 +8,7 @@ pipeline{
         GCR_URL = 'us-east1-docker.pkg.dev/solid-antler-409714/gcprepo'
         APP_NAME = 'aservices'
         RELEASE_NAME = 'chereddy'
-        def CHAR_VER = sh(script: "grep '^version' k8app/Chart.yaml | cut -d ':' -f 2|sed 's/ //g'", returnStdout: true ).trim()
+        def CHAR_VER = sh(script: "grep '^version' aservices/Chart.yaml | cut -d ':' -f 2|sed 's/ //g'", returnStdout: true ).trim()
 		def CHART_NAME = sh(script: "echo '${APP_NAME}'-'${CHAR_VER}'.tgz\n", returnStdout: true ).trim()
         
     }
