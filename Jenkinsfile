@@ -28,15 +28,20 @@ pipeline{
             }
 
         stage("Creating helm charts"){
+            steps{
+
             sh("sed -i 's/TAG_NAME/${env.BUILD_ID}/g' k8app/values.yaml")
             sh("helm package k8app")
             sh("helm push k8app-0.1.0.tgz oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
+            }
         }
 
         Stage('Deploying the app into K8'){
+            steps{
 
             sh('gcloud container clusters get-credentials friends --zone us-west4-b --project solid-antler-409714')
             sh('helm install us-east1-docker.pkg.dev/solid-antler-409714/helmrepo/k8app:0.1.0')
+        }
         }
         
 
