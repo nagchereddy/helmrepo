@@ -40,7 +40,7 @@ pipeline{
         }
         }
 
-        Stage('Deploying the app into K8'){
+        stage('Deploying the app into K8'){
             steps{
                 script{
             sh('gcloud container clusters get-credentials friends --zone us-west4-b --project solid-antler-409714')
