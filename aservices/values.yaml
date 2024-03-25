@@ -1,0 +1,8 @@
+replicacount: 3
+image:
+  repository: "us-east1-docker.pkg.dev/solid-antler-409714/gcprepo/aservices"
+  tag: "TAG_NAME"
+  pullPolicy: IfNotPresent
+service:
+  type: LoadBalancer
+  port: 80
