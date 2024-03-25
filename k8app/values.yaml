@@ -1,7 +1,7 @@
 replicacount: 2
 image:
   repository: "us-east1-docker.pkg.dev/solid-antler-409714/gcprepo/httpd"
-  tag: "1.0"
+  tag: "TAG_NAME"
   pullPolicy: IfNotPresent
 service:
   type: NodePort
