@@ -26,6 +26,8 @@ pipeline{
                         customImage.push()
                         
             }
+                }
+            }
 
         stage("Creating helm charts"){
             steps{
@@ -51,5 +53,3 @@ pipeline{
             }
         }
     
-}
-}
