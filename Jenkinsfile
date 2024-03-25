@@ -41,7 +41,7 @@ pipeline{
             def CHAR_VER = sh("grep '^version' k8app/Chart.yaml | cut -d ':' -f 2|sed 's/ //g'")
             echo ${CHAR_VER}
             sh("helm package k8app")
-            sh("helm push k8app-0.1.1.tgz oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
+            sh("helm push k8app-${CHAR_VER}.tgz oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
             }
         }
         }
@@ -50,7 +50,7 @@ pipeline{
             steps{
                 script{
             sh('gcloud container clusters get-credentials friends --zone us-west4-b --project solid-antler-409714')
-            sh('helm upgrade ${RELEASE_NAME} oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo/k8app --version 0.1.1 ')
+            sh('helm upgrade ${RELEASE_NAME} oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo/k8app --version ${CHAR_VER} ')
         }
             }
         }
