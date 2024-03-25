@@ -41,7 +41,7 @@ pipeline{
             def CHAR_VER = sh("grep '^version' k8app/Chart.yaml | cut -d ':' -f 2|sed 's/ //g'")
             def CHART_NAME = sh("echo 'k8app-${CHAR_VER}.tgz'")
             sh("helm package k8app")
-            sh("helm push '${CAHRT_NAME}' oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
+            sh("helm push '${CHART_NAME}' oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
             }
         }
         }
