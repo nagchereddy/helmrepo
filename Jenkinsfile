@@ -28,6 +28,7 @@ pipeline{
             }
                 }
             }
+        }
 
         stage("Creating helm charts"){
             steps{
@@ -51,5 +52,5 @@ pipeline{
 
             }
             }
-        }
+        
     
