@@ -1,6 +1,6 @@
 replicacount: 1
 image:
-  repository: "us-east1-docker.pkg.dev/solid-antler-409714/gcprepo/aservices"
+  repository: "us-central1-docker.pkg.dev/steady-circuit-460515-a0/nchereddy/aservices"
   tag: "TAG_NAME"
   pullPolicy: IfNotPresent
 service:
