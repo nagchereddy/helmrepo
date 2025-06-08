@@ -50,7 +50,7 @@ pipeline{
         stage('Deploying the app into K8'){
             steps{
                 script{
-            sh('gcloud container clusters get-credentials friends --zone us-west4-b --project steady-circuit-460515-a0')
+            sh('gcloud container clusters get-credentials dev-cluster --region us-central1 --project steady-circuit-460515-a0')
             sh(script: "helm upgrade '${RELEASE_NAME}' oci://us-central1-docker.pkg.dev/steady-circuit-460515-a0/nchereddy/'${APP_NAME}' --version '${CHAR_VER}'")
         }
             }
