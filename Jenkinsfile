@@ -51,7 +51,7 @@ pipeline{
             steps{
                 script{
             sh('gcloud container clusters get-credentials dev-cluster --region us-central1 --project steady-circuit-460515-a0')
-            sh(script: "helm upgrade '${RELEASE_NAME}' oci://us-central1-docker.pkg.dev/steady-circuit-460515-a0/nchereddy/'${APP_NAME}' --version '${CHAR_VER}'")
+            sh(script: "helm upgrade --install '${RELEASE_NAME}' oci://us-central1-docker.pkg.dev/steady-circuit-460515-a0/nchereddy/'${APP_NAME}' --version '${CHAR_VER}'")
         }
             }
         }
