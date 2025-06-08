@@ -3,9 +3,9 @@ pipeline{
     agent any
     environment{
         REPO_CREDS = 'github'
-        ARTIFACT_CREDS = credentials('jenkinsogcp')
+        ARTIFACT_CREDS = credentials('jenkins-sa')
         GITHUB_NAME = 'gcprepo'
-        GCR_URL = 'us-east1-docker.pkg.dev/solid-antler-409714/gcprepo'
+        GCR_URL = 'us-central1-docker.pkg.dev/steady-circuit-460515-a0/nchereddy'
         APP_NAME = 'aservices'
         RELEASE_NAME = 'chereddy'
         def CHAR_VER = sh(script: "grep '^version' aservices/Chart.yaml | cut -d ':' -f 2|sed 's/ //g'", returnStdout: true ).trim()
@@ -24,7 +24,7 @@ pipeline{
         stage("authenticating with GCP"){
             steps{
                 script{
-                withCredentials([file(credentialsId: 'jenkinsogcp', variable: 'ARTIFACT_CREDS')]) {
+                withCredentials([file(credentialsId: 'jenkins-sa', variable: 'ARTIFACT_CREDS')]) {
                         sh("gcloud  auth activate-service-account --key-file=${ARTIFACT_CREDS}")
                         def customImage = docker.build("${GCR_URL}/${APP_NAME}:${env.BUILD_ID}")
 
@@ -42,7 +42,7 @@ pipeline{
             sh("sed -i 's/TAG_NAME/${env.BUILD_ID}/g' '${APP_NAME}'/values.yaml")
             
             sh("helm package '${APP_NAME}'")
-            sh("helm push '${CHART_NAME}' oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo")
+            sh("helm push '${CHART_NAME}' oci://us-central1-docker.pkg.dev/steady-circuit-460515-a0/nchereddy")
             }
         }
         }
@@ -50,8 +50,8 @@ pipeline{
         stage('Deploying the app into K8'){
             steps{
                 script{
-            sh('gcloud container clusters get-credentials friends --zone us-west4-b --project solid-antler-409714')
-            sh(script: "helm upgrade '${RELEASE_NAME}' oci://us-east1-docker.pkg.dev/solid-antler-409714/helmrepo/'${APP_NAME}' --version '${CHAR_VER}'")
+            sh('gcloud container clusters get-credentials friends --zone us-west4-b --project steady-circuit-460515-a0')
+            sh(script: "helm upgrade '${RELEASE_NAME}' oci://us-central1-docker.pkg.dev/steady-circuit-460515-a0/nchereddy/'${APP_NAME}' --version '${CHAR_VER}'")
         }
             }
         }
